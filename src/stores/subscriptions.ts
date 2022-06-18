@@ -7,7 +7,8 @@ export const subscriptionForm = writable({
   name: "",
   is_active: true,
   last_payment: "",
-  pay_on: "",
+  first_payment_on: "",
   price: 0,
-  subscription_type: "1"
+  subscription_type: "1",
+  subscription_interval: 1
 });

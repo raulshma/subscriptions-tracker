@@ -48,31 +48,65 @@
         placeholder="0.00"
       />
     </div>
+    <div class="flex flex-row gap-1">
+      <div width="w-1/6">
+        <label
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+          for="subscription_interval"
+        >
+          every
+        </label>
+        <input
+          type="number"
+          id="subscription_interval"
+          placeholder="every"
+          class="px-3 py-3 placeholder-slate-300 text-slate-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"
+          bind:value={$form.subscription_interval}
+        />
+      </div>
+      <div class="w-5/6">
+        <label
+          for="subscription_type"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+          >subscription Type</label
+        >
+        <select
+          bind:value={$form.subscription_type}
+          id="subscription_type"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded shadow outline-none focus:outline-none focus:ring w-full p-2.5"
+        >
+          <option value="1" selected>monthly</option>
+          <option value="2">annually</option>
+          <option value="3">weekly</option>
+          <option value="4">daily</option>
+        </select>
+      </div>
+    </div>
     <div>
       <label
         class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
         for="payment_date"
       >
-        payment date
+        first payment date
       </label>
       <input
         type="date"
         id="payment_date"
-        placeholder="payment date"
+        placeholder="first payment date"
         class="px-3 py-3 placeholder-slate-300 text-slate-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"
-        bind:value={$form.pay_on}
+        bind:value={$form.first_payment_on}
       />
     </div>
     <div>
       <label
         class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
-        for="pay_on"
+        for="last_payment"
       >
         last paid on
       </label>
       <input
-        type="datetime-local"
-        id="pay_on"
+        type="date"
+        id="last_payment"
         placeholder="Last paid on"
         class="px-3 py-3 placeholder-slate-300 text-slate-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"
         bind:value={$form.last_payment}
@@ -95,21 +129,6 @@
         >is active</span
       >
     </label>
-    <div>
-      <label
-        for="subscription_type"
-        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
-        >subscription Type</label
-      >
-      <select
-        bind:value={$form.subscription_type}
-        id="subscription_type"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded shadow outline-none focus:outline-none focus:ring w-full p-2.5"
-      >
-        <option value="1" selected>monthly</option>
-        <option value="2">annually</option>
-      </select>
-    </div>
     <button
       type="button"
       on:click={onSubmit}

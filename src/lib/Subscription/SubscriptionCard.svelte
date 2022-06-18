@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { formatDistanceToNow } from 'date-fns';
   import { getSubscriptionType } from '../../helpers/getSubscriptionType';
   import { getPriceWithCurrencySymbol } from '../../helpers/getPriceWithCurrencySymbol';
   import { getCurrentPaymentStatus } from '../../helpers/getCurrentPaymentStatus';
@@ -27,22 +26,23 @@
       )}
     </p>
     <!--Payment status-->
-    {#if getCurrentPaymentStatus(subscription.pay_on, subscription.last_payment, subscription.subscription_type)}
-      <p class="text-sm text-slate-600 leading-4">
-        pay in {formatDistanceToNow(new Date(subscription.pay_on), {
-          includeSeconds: false,
-        })}
-        ({getSubscriptionType(subscription.subscription_type)})
-      </p>
-    {:else}
-      <!--Last payment info-->
-      <p class="text-sm text-slate-600 leading-4">
+    <!-- {#if getCurrentPaymentStatus(subscription.first_payment_on, subscription.last_payment, subscription.subscription_type)} -->
+    <p class="text-sm text-slate-600 leading-4">
+      pay in {getCurrentPaymentStatus(
+        subscription.last_payment,
+        subscription.subscription_type
+      )}
+      <strong>({getSubscriptionType(subscription.subscription_type)})</strong>
+    </p>
+    <!-- {:else} -->
+    <!--Last payment info-->
+    <!-- <p class="text-sm text-slate-600 leading-4">
         last paid {formatDistanceToNow(new Date(subscription.last_payment))} ago,
         <span class="font-bold"
           >{getSubscriptionType(subscription.subscription_type)}</span
         >
       </p>
-    {/if}
+    {/if} -->
     <!--Category-->
     <span
       class="rounded-full px-1 py-0.5 bg-green-100 text-green-600 font-medium text-xs"
